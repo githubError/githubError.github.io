@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>崔鹏飞</title>
+    <description>嗨，我是崔鹏飞，一名 iOS 开发小学生。</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 16 Apr 2018 17:15:33 +0800</pubDate>
+    <lastBuildDate>Mon, 16 Apr 2018 17:15:33 +0800</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>ARKit初探究</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/Users/cuipengfei/cuipengfei.cn/githubError.github.io/assets/post_images/2017/arkit.png&quot; alt=&quot;ARKit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;##About
+从看完 WWDC 2017的 Keynote 直播开始，我就被 iOS11 SDK 新增的 ARKit 框架深深的吸引住了，要知道，在此之前想要制作一个 AR 产品那真是一个遥不可及的梦。ARKit 的出现使得我们不再需要购买专门的 AR 硬件设备，现在只需要一台 iPhone 或者 iPad 便能体验增强现实带给我们的新奇的视觉冲击感，极大的降低了普通人接触增强现实的成本。这里需要说明的是，新增的 ARKit 框架只支持 Apple A9 及更高性能的处理器，也意味着 iPhone SE 及 iPhone 6s 以前的机型将不支持此特性。 本文不以深入介绍 ARKit 的框架使用为目的，因此如果你是一名 Apple Developer 并且恰好和我一样对增强现实技术感兴趣的话，阅读此文，你将很快学会 ARKit 的简单使用。&lt;/p&gt;
+
+&lt;p&gt;##How About ARKit
+前面的新闻报道和探路的开发者们关于什么是 ARKit 的介绍已经非常多了，本文变不再赘述。那么 ARKit 令人叹为观止的强大性能具体表现在哪些方面呢？&lt;/p&gt;
+</description>
+        <pubDate>Fri, 01 Sep 2017 13:44:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/09/arkit-exploration/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/arkit-exploration/</guid>
+        
+        <category>Swift</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>KaraNotes 基于Swift3.0的iOS移动端Blog的设计与实现</title>
+        <description>&lt;h1 id=&quot;karanotes&quot;&gt;KaraNotes&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;基于Swift3.0的iOS移动端Blog的设计与实现&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;本项目的初衷是为了做一个 iOS 移动端博客收发平台用以作为&lt;strong&gt;毕业设计&lt;/strong&gt;。项目使用的是 Swift 3.0 + Alamofire + SnapKit，&lt;a href=&quot;https://github.com/viakiba/karanotes&quot;&gt;服务端&lt;/a&gt;采用的是Java + SpringMVC + Ehcache。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;项目源码：&lt;strong&gt;https://github.com/githubError/KaraNotes&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;支持功能&quot;&gt;支持功能&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1、编辑器功能&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方便输入 Markdown 语法符号&lt;/li&gt;
+  &lt;li&gt;Markdown 实时语法高亮&lt;/li&gt;
+  &lt;li&gt;方便插入图片、链接排版&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2、文章阅读功能&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;支持文章点赞、评论、收藏&lt;/li&gt;
+  &lt;li&gt;支持社交平台分享功能&lt;/li&gt;
+  &lt;li&gt;支持文章再编辑功能&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3、用户关系&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;支持文章、用户搜索功能&lt;/li&gt;
+  &lt;li&gt;支持建立用户关系（关注、被关注、相互关注）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4、附加功能&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;支持 Markdown 文章解析、导出 PDF、HTML、md 文件等&lt;/li&gt;
+  &lt;li&gt;提供文章预览功能&lt;/li&gt;
+  &lt;li&gt;支持 3D Touch，提供应用 icon 的 peek 操作和应用内 pop 操作&lt;/li&gt;
+  &lt;li&gt;国际化，支持简体中文和英文两种语言，跟随系统语言&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;5、用户交互界面&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用 Sketch 42.0 创建&lt;/li&gt;
+  &lt;li&gt;如果需要设计图请联系我：&lt;strong&gt;0x00ffee@gmail.com&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;项目展示&quot;&gt;项目展示&lt;/h3&gt;
+
+&lt;p&gt;1、关注列表&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/attention.png&quot; width=&quot;33%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、文章撰写&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/write_article.png&quot; width=&quot;33%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3、文章阅读、3D Touch&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/article.png&quot; width=&quot;33%&quot; /&gt;
+&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/article_pop.png&quot; width=&quot;33%&quot; /&gt;
+&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/peek.png&quot; width=&quot;33%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4、文章预览、导出&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/preview_article.png&quot; width=&quot;33%&quot; /&gt;
+&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/export_article.png&quot; width=&quot;33%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5、个人中心&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cuipengfei.cn/assets/post_images/2017/mine.gif&quot; width=&quot;33%&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 06 Jun 2017 14:30:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/06/karanotes/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/06/karanotes/</guid>
+        
+        <category>Swift</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>正则表达从入门到解析 Markdown 语法【Swift】</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;正则表达式是一种通用的对字符串操作的逻辑公式，用事先规定好的一些特定的字符以及特定字符间的组合来组成一个规则字符串，用来表示对字符串的过滤逻辑。简言之，正则表达式是非常强大的文本处理工具，仅仅使用非常简洁的表达式语句，便能迅速的实现非常复杂的业务逻辑，极大的提高开发效率和程序的运行效率。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;文章起源&quot;&gt;文章起源&lt;/h3&gt;
+&lt;p&gt;本篇文章缘起为我个人的毕业设计项目《一个多平台 Blog 系统的开发与实现》，既然是做一个 Blog 收发平台，除了基本的文章撰写、发布、评论、点赞、收藏、分享功能之外，更为重要的是需要支持 Markdown 语法排版和解析的功能，很难想象一个号称 Blog 的平台不支持富文本排版会是一个什么样的体验。&lt;/p&gt;
+
+&lt;p&gt;Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。既然如此，那解析 Markdown 语法文本字符串的功能的实现自然而然的就想到了使用正则表达式。&lt;/p&gt;
+
+&lt;h3 id=&quot;正则表达式规则&quot;&gt;正则表达式规则&lt;/h3&gt;
+
+&lt;p&gt;在使用正则表达式解析 Markdown 语法之前，我们要先对正则表达式的规则有一个基本的认识，下面我整理了一张正则表达式语法对照表。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;正则字符&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;含义&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;正则字符&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;含义&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;^&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;以某指定字符开头&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;(a|b)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;a 或 b&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;以某指定字符结尾&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[abc]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配一个单字符是 a 或 b 或 c&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配任意单字符&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[^abc]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配一个单字符不是 a 或 b 或 c&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配前面的子表达式0次或多次&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[a-z]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;小写字符 a ~ z 之间&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;转义字符&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[0-9]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;数字 0 ~ 9 之间&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;使用[]中的规则集合匹配对象&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\s&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;空格&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;()&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;标记一个子表达式的开始和结束位置&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\S&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;非空格&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;+&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配前面的子表达式1次或多次&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\d&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;|&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;或者&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\D&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;非数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配前面的子表达式0次或1次&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{x}&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;x是非负整数，匹配确定的 x 次&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;-&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;指定字符串的范围&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{x,}&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;x是非负整数，匹配至少 x 次&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;\b&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;匹配一个单词边界，即单词和空格间的位置&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{x,y}&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;xy是非负整数，匹配 x~y 次之间&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;正则表达式简单应用&quot;&gt;正则表达式简单应用&lt;/h3&gt;
+
+&lt;p&gt;1、表示所有以”The”开始的字符串。（”There”, “The cat”）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^The
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;2、表示字符串包含一个a，并且 a 后面跟着0个或多b。（”a”, “ab”, “abbb”）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;3、表示字符串有一个a，并且 a 后面跟着至少2个b。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab{2,}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;4、表示字符串有一个a，并且 a 后面跟着一个任意字符和一个数字。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a.[0-9]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;除此之外，网上还有很多有关 URL、Email、电话或手机号码、校验邮政编码、校验密码强度等规则，这里就不在一一列举说明了。&lt;/p&gt;
+
+&lt;h3 id=&quot;正则表达式解析-markdown-语法&quot;&gt;正则表达式解析 Markdown 语法&lt;/h3&gt;
+
+&lt;p&gt;Markdown 语法包括标题、图片、链接、引用块、列表、粗体、斜体等，下面是解析这些语法的正则表达式和简单说明：&lt;/p&gt;
+
+&lt;p&gt;1、标题（表示以一个或多个“#”开头的字符串，并且“#”之后有0个或以上的字符，如：“### 三级标题”）。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(#+)(.*)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;2、链接 （在 Markdown 语法中链接的表示形式为 [链接](URL)。）。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(\\[.+\\]\\([^\\)]+\\))|(&amp;lt;.+&amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;上面的表达式可以以 &lt;strong&gt;|&lt;/strong&gt; 分为两个部分:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;a)  (\[.+\]\([^\)]+\))&lt;/p&gt;
+
+  &lt;p&gt;b)  (&amp;lt;.+&amp;gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;其中 b) 匹配的是 HTML 标签对，而 a) 又可以以中间的 &lt;strong&gt;\&lt;/strong&gt; 分为两个部分：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;c)  \[.+\]&lt;/p&gt;
+
+  &lt;p&gt;d)  ([^\)]+\)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;其中 c) 是用来匹配包含 &lt;strong&gt;[&lt;/strong&gt; + &lt;strong&gt;超过1个字符&lt;/strong&gt; + &lt;strong&gt;]&lt;/strong&gt; 的字符串，而 d) 是用来匹配紧随其后的包含 &lt;strong&gt;(&lt;/strong&gt; + &lt;strong&gt;超过1个字符&lt;/strong&gt; + &lt;strong&gt;)&lt;/strong&gt;的字符串。满足这个整体规则的字符串便是 Markdown 语法的&lt;strong&gt;链接&lt;/strong&gt;了。&lt;/p&gt;
+
+&lt;p&gt;3、斜体（表示以一个 &lt;strong&gt;*&lt;/strong&gt; 或者 &lt;strong&gt;_&lt;/strong&gt; 开头并结尾（&lt;strong&gt;\\1&lt;/strong&gt;表示规则和第一个集合相同），中间包含0个或多个字符的字符串）。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(\\*|_)(.*?)\\1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;懒癌发作，一个一个的这么分析太慢了，如果你们需要，请自行结合 Markdown 语法规则分析下面的正则表达式：&lt;/p&gt;
+
+&lt;p&gt;4、图片（部分地方同链接）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;!\\[[^\\]]+\\]\\([^\\)]+\\)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;5、粗体（同斜体）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(\\*\\*|__)(.*?)\\1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;6、删除线（&lt;em&gt;&lt;del&gt;删除线&lt;/del&gt;&lt;/em&gt;）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\\~\\~(.*?)\\~\\~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;7、引用块&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\n(&amp;amp;gt;|\\&amp;gt;)(.*)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;8、内联代码块&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`{1,2}[^`](.*?)`{1,2}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;9、分割线&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^-+$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;10、```包围的代码块&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```([\\s\\S]*?)```[\\s]?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;11、无序列表&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[\\s]*[-\\*\\+] +(.*)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;12、有序列表&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[\\s]*[0-9]+\\.(.*)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;应用&quot;&gt;应用&lt;/h3&gt;
+
+&lt;p&gt;这些解析规则全都应用在了我的毕业设计里面，最大的用途之一是 Markdown 语法的实时高亮和富文本转换。先看看效果图，改天写关于 Markdown 语法高亮和富文本转换的应用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/2017/karanotes_regular_expression.png&quot; alt=&quot;正则表达解析 Markdown 语法应用&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;总结&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;本文旨在通过介绍一些正则表达式的基础语法，并根据在自己实际的毕业设计项目中的应用来简单解释一些有关正则表达式的一些用法。另外，想要熟练掌握正则表达的规则只能通过自己多写多练，这里给大家推荐一款不错的在线正则表达式测试工具&lt;a href=&quot;https://regex101.com&quot;&gt;regex101&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;有任何疑问或指正请前往我的个人主页：&lt;strong&gt;&lt;a href=&quot;http://www.cuipengfei.cn&quot;&gt;崔鹏飞的个人主页&lt;/a&gt;&lt;/strong&gt;，或直接联系：&lt;strong&gt;0x00ffee@gmail.com&lt;/strong&gt;，谢谢。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 15 May 2017 10:45:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/05/regular-expression/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/regular-expression/</guid>
+        
+        <category>Swift</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

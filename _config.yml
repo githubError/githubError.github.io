@@ -25,7 +25,7 @@ nav:
     #- {title: 订阅, description: 邮件订阅本站, url: '//store.objccn.io/subscribe'}
 
 # Pagination
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 paginate: 10
 paginate_path: "page/:num/"
 

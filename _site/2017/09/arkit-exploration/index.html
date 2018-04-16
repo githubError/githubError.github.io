@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>ARKit初探究</title>
+  <meta name="description" content="">
+  <meta name="author" content="崔鹏飞">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ARKit初探究">
+  <meta name="twitter:description" content="">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ARKit初探究">
+  <meta property="og:description" content="">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2017/09/arkit-exploration/">
+  <link rel="alternate" type="application/rss+xml" title="崔鹏飞" href="http://localhost:4000/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+  
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/#blog" title="前往 崔鹏飞 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="崔鹏飞 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for 崔鹏飞" class="blog-button">崔鹏飞</a></h1>
+
+        
+        <span class="panel-cover__subtitle panel-subtitle">Apple Dev</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">嗨，我是崔鹏飞，一名 iOS 开发小学生。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/githubError" title="@githubError 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:0x00ffee@gmail.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-disabled"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-09-01 13:44:00 +0800" itemprop="datePublished" class="post-meta__date date">2017-09-01</time> &#8226; <span class="post-meta__tags tags">Swift</span>
+    </div>
+    <h1 class="post-title">ARKit初探究</h1>
+  </header>
+
+  <section class="post">
+    <p><img src="/Users/cuipengfei/cuipengfei.cn/githubError.github.io/assets/post_images/2017/arkit.png" alt="ARKit" /></p>
+
+<p>##About
+从看完 WWDC 2017的 Keynote 直播开始，我就被 iOS11 SDK 新增的 ARKit 框架深深的吸引住了，要知道，在此之前想要制作一个 AR 产品那真是一个遥不可及的梦。ARKit 的出现使得我们不再需要购买专门的 AR 硬件设备，现在只需要一台 iPhone 或者 iPad 便能体验增强现实带给我们的新奇的视觉冲击感，极大的降低了普通人接触增强现实的成本。这里需要说明的是，新增的 ARKit 框架只支持 Apple A9 及更高性能的处理器，也意味着 iPhone SE 及 iPhone 6s 以前的机型将不支持此特性。 本文不以深入介绍 ARKit 的框架使用为目的，因此如果你是一名 Apple Developer 并且恰好和我一样对增强现实技术感兴趣的话，阅读此文，你将很快学会 ARKit 的简单使用。</p>
+
+<p>##How About ARKit
+前面的新闻报道和探路的开发者们关于什么是 ARKit 的介绍已经非常多了，本文变不再赘述。那么 ARKit 令人叹为观止的强大性能具体表现在哪些方面呢？</p>
+
+  </section>
+</article>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- OneV's Den -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3324997515191619"
+     data-ad-slot="9170309685"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<section class="read-more">
+   
+   
+   
+   
+   <div class="read-more-item">
+       <span class="read-more-item-dim">更早的文章</span>
+       <h2 class="post-list__post-title post-title"><a href="/2017/06/karanotes/" title="link to KaraNotes 基于Swift3.0的iOS移动端Blog的设计与实现">KaraNotes 基于Swift3.0的iOS移动端Blog的设计与实现</a></h2>
+       <p class="excerpt">KaraNotes  基于Swift3.0的iOS移动端Blog的设计与实现本项目的初衷是为了做一个 iOS 移动端博客收发平台用以作为毕业设计。项目使用的是 Swift 3.0 + Alamofire + SnapKit，服务端采用的是Java + SpringMVC + Ehcache。项目源码：https://github.com/githubError/KaraNotes支持功能1、编辑器功能  方便输入 Markdown 语法符号  Markdown 实时语法高亮  方便插入图片...&hellip;</p>
+       <div class="post-list__meta"><time datetime="2017-06-06 14:30:00 +0800" class="post-list__meta--date date">2017-06-06</time> &#8226; <span class="post-list__meta--tags tags">Swift</span><a class="btn-border-small" href=/2017/06/karanotes/>继续阅读</a></div>
+   </div>
+   
+</section>
+
+<section class="post-comments">
+  
+  
+  
+        <!-- UY BEGIN -->
+        <div id="uyan_frame"></div>
+        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128073">
+            (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//v2.uyan.cc/code/uyan.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+        <!-- UY END -->
+        
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+    	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-04-16 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+<!-- Baidu analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?ff67184f5179ba448c739cf2fb08d2ee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+</script>
+
+
+    
+  </body>
+
+</html>
