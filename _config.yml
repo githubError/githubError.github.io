@@ -1,0 +1,50 @@
+# Basic
+title: 崔鹏飞
+subtitle: Apple Dev
+#welcome_message: 
+description: 嗨，我是崔鹏飞，一名 iOS 开发小学生。
+creator: <a href="https://github.com/githubError">@githubError</a>
+
+url: "http://www.cuipengfei.cn"
+
+permalink: /:year/:month/:title/
+
+# Format
+highlighter: rouge
+
+# supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
+cover_color: 
+
+blog_button:
+    title: 博客
+    description: 访问博客
+
+nav:
+    #- {title: 简历, description: 我的简历, url: ''}
+    #- {title: 关于, description: 了解更多关于我, url: 'http://about.onevcat.com/'}
+    #- {title: 订阅, description: 邮件订阅本站, url: '//store.objccn.io/subscribe'}
+
+# Pagination
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "page/:num/"
+
+# Comment
+comment:
+    youyan: cuipengfei
+    #disqus: onevcat
+    # duoshuo:
+# Social
+social:
+    #weibo: cuipengfei
+    github: githubError
+    #twitter: cuipengfei
+    mail: 0x00ffee@gmail.com
+
+# Google Analytics
+
+baidu_analytics: ff67184f5179ba448c739cf2fb08d2ee    #from //hm.baidu.com/hm.js?***
+
+# ga:
+#     id: UA-25719337-1
+#     host: onevcat.com
