@@ -1,0 +1,393 @@
+
+<html lang="zh-cmn-Hans"><head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="网址导航">
+    <meta name="description" content="为您提供互联网上最简洁、实用的网址导航。">
+    <title>网址导航</title>
+    <link rel="icon" type="image/png" href="http://www.cuipengfei.cn/assets/images/favicon.png"></link>
+    <style>
+        *{margin: 0;font-size: 16px;font-family: "Arial";}
+        a{color: #004398;text-decoration: none}
+        a:hover{color: #b33035}
+        .t-r,.t-r:hover{color: red}
+        .t-0 a,.t-0 a:hover{color: #000}
+        .t-b a,.t-b a:hover{color: #00f}
+        .cf .t-g,.cf .t-g:hover{color: #3eaf0e;border-bottom: 2px solid #3eaf0e;padding: 8px}
+        .cf{zoom: 1}
+        .cf:after{clear: both}
+        .cf:after,.cf:before{content: "";display: table}
+        .fl{float: left}
+        .fr{float: right}
+        .m-r a{margin-right: 20px}
+        .h-b{padding: 8px 0;border-bottom: 1px solid #d5d5d5}
+        .box{width: 900px;margin: 0 auto;margin-bottom: 50px;margin-top: 30px}
+        .cr{width: 900px;border: 1px solid #d9e9f8}
+        .cl{width: 170px;background-color: #fafbfd;border: 1px solid #aaccee;padding: 20px 10px}
+        h5{color: #004398;margin-top: 15px;font-size: 14px}
+        .h5{background-color: #f0f5fb;padding: 8px 12px;margin-top: 0;font-size: 14px}
+        .box .cl a{margin-top: 15px;margin-right: 5px;display: inline-block}
+        .cr>div>p{margin: 0 30px;display: inline-block}
+        .cr>div a{margin-right:30px}
+        .cr>div{margin-top: 5px;margin-bottom: 10px}
+        .title{text-align: center; font-size: 25px; color: #004398; margin-left: -60px; }
+    </style>
+    <base target="_blank">
+</head>
+<body>
+
+<div class="box">
+    <p class="title"><a href="http://www.cuipengfei.cn" class="title" style="text-decoration: none;">我七岁就很帅</a>的网址导航</p>
+</div>
+<div class="box">
+    
+    <div class="cf">
+        <div class="fr cr" id="insertParserJSON">
+            <h5 class="h5">推荐网站</h5>
+        </div>
+    </div>
+</div>
+
+
+    <script type="text/javascript">
+
+        var dataArr = [
+
+        {
+            type : "科研",
+            subData : [
+            {
+                title : "Google",
+                link : "https://www.google.com/ncr#hl=zh-cn"
+            },
+            {
+                title : "Google学术",
+                link : "https://scholar.google.com/?hl=zh-CN"
+            },
+            {
+                title : "SCI-HUB",
+                link : "http://sci-hub.cc/"
+            },
+            {
+                title : "文献下载",
+                link : "https://www.zhihu.com/question/20188973/answer/71344089"
+            },
+            {
+                title : "维基百科",
+                link : "https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5"
+            }
+                ]
+        },
+        {
+            type : "开发",
+            subData : [
+            {
+                title : "GitHub",
+                link : "https://github.com/"
+            },
+            {
+                title : "StackOverflow",
+                link : "http://stackoverflow.com/"
+            },
+            {
+                title : "V2EX",
+                link : "https://www.v2ex.com/"
+            },
+            {
+                title : "w3school",
+                link : "http://www.w3school.com.cn/"
+            },
+            {
+                title : "廖雪峰",
+                link : "https://www.liaoxuefeng.com/"
+            }
+                ]
+        },
+        {
+            type : "资源",
+            subData : [
+            {
+                title : "Xclient",
+                link : "http://xclient.info/"
+            },
+            {
+                title : "史蒂芬周",
+                link : "http://www.sdifen.com/"
+            },
+            {
+                title : "人人影视",
+                link : "http://www.zimuzu.tv/"
+            },
+            {
+                title : "VIP部落",
+                link : "http://www.vipbuluo.com/"
+            }
+                ]
+        },
+        {
+            type : "视频",
+            subData : [
+            {
+                title : "优酷",
+                link : "http://www.youku.com/"
+            },
+            {
+                title : "爱奇艺",
+                link : "http://www.iqiyi.com/"
+            },
+            {
+                title : "搜狐视频",
+                link : "http://tv.sohu.com/"
+            },
+            {
+                title : "土豆网",
+                link : "http://www.tudou.com/"
+            },
+            {
+                title : "腾讯视频",
+                link : "http://v.qq.com/"
+            },
+            {
+                title : "芒果TV",
+                link : "https://www.mgtv.com/"
+            }
+                ]
+        },
+        {
+            type : "知识",
+            subData : [
+            {
+                title : "网易公开课",
+                link : "http://open.163.com/"
+            },
+            {
+                title : "知乎",
+                link : "http://www.zhihu.com/"
+            },
+            {
+                title : "知乎日报",
+                link : "http://zhihudaily.ahorn.me/"
+            },
+            {
+                title : "一览",
+                link : "http://www.yilan.io/"
+            },
+            {
+                title : "果壳网",
+                link : "http://www.guokr.com/"
+            },
+            {
+                title : "MOOC中国",
+                link : "http://www.mooc.cn/"
+            }
+                ]
+        },
+        {
+            type : "资讯",
+            subData : [
+            {
+                title : "网易新闻",
+                link : "http://news.163.com/"
+            },
+            {
+                title : "FT中文网",
+                link : "http://www.ftchinese.com/"
+            },
+            {
+                title : "好奇心日报",
+                link : "http://www.qdaily.com/"
+            },
+            {
+                title : "简书",
+                link : "http://www.jianshu.com/"
+            },
+            {
+                title : "界面",
+                link : "http://www.jiemian.com/"
+            }
+                ]
+        },
+        {
+            type : "邮箱",
+            subData : [
+            {
+                title : "Gmail",
+                link : "https://mail.google.com/mail/?hl=zh-CN"
+            },
+            {
+                title : "163邮箱",
+                link : "http://mail.163.com/"
+            },
+            {
+                title : "QQ邮箱",
+                link : "http://mail.qq.com/"
+            },
+            {
+                title : "126邮箱",
+                link : "http://www.126.com/"
+            },
+            {
+                title : "Hotmail",
+                link : "http://www.outlook.com/"
+            },
+            {
+                title : "腾讯企邮",
+                link : "http://exmail.qq.com/"
+            }
+                ]
+        },
+        {
+            type : "社区",
+            subData : [
+            {
+                title : "百度贴吧",
+                link : "http://tieba.baidu.com/"
+            },
+            {
+                title : "微博",
+                link : "http://weibo.com/"
+            },
+            {
+                title : "豆瓣",
+                link : "http://www.douban.com/"
+            },
+            {
+                title : "人人网",
+                link : "http://www.renren.com/"
+            }
+                ]
+        },
+        {
+            type : "购物",
+            subData : [
+            {
+                title : "淘宝",
+                link : "https://www.taobao.com/"
+            },
+            {
+                title : "天猫",
+                link : "https://www.tmall.com/"
+            },
+            {
+                title : "京东",
+                link : "http://www.jd.com/"
+            },
+            {
+                title : "亚马逊",
+                link : "http://www.amazon.cn/"
+            },
+            {
+                title : "苏宁易购",
+                link : "http://www.suning.com/"
+            },
+            {
+                title : "一号店",
+                link : "http://www.yhd.com/"
+            }
+                ]
+        },
+        {
+            type : "日常工具",
+            subData : [
+            {
+                title : "JSON转Model",
+                link : "https://app.quicktype.io/#l=objc"
+            },
+            {
+                title : "在线工具",
+                link : "https://tool.lu/"
+            },
+            {
+                title : "百度地图",
+                link : "http://map.baidu.com/"
+            },
+            {
+                title : "12306",
+                link : "https://kyfw.12306.cn/otn/index/init"
+            },
+            {
+                title : "IP查询",
+                link : "http://www.ip138.com/"
+            },
+            {
+                title : "快递查询",
+                link : "http://www.kiees.cn/"
+            }
+                ]
+        },
+        {
+            type : "科技",
+            subData : [
+            {
+                title : "36氪",
+                link : "http://www.36kr.com/"
+            },
+            {
+                title : "少数派",
+                link : "http://sspai.com/"
+            },
+            {
+                title : "极客公园",
+                link : "http://www.geekpark.net/"
+            },
+            {
+                title : "cnBeta",
+                link : "http://www.cnbeta.com/"
+            },
+            {
+                title : "爱范儿",
+                link : "http://www.ifanr.com/"
+            },
+            {
+                title : "触乐",
+                link : "http://www.chuapp.com/"
+            }
+                ]
+        }
+
+            ];
+
+    function parserJSON(jsonDataArr) {
+
+        var parentDiv = document.getElementById('insertParserJSON');
+
+
+
+        for (let i in jsonDataArr) {
+            var dataDic = jsonDataArr[i];
+            var type = dataDic['type'];
+            var subDataArr = dataDic['subData'];
+
+            var div = document.createElement('div');
+            var p = document.createElement('p');
+            p.innerText = type;
+            div.appendChild(p);
+
+
+            console.log(type);
+
+            for (let i  in subDataArr) {
+                var subDic = subDataArr[i];
+                var title = subDic['title'];
+                var link = subDic['link'];
+
+                var a = document.createElement('a');
+                a.innerText = title;
+                a.setAttribute('href',link);
+                div.appendChild(a);
+
+                console.log(title);
+            }
+
+
+            parentDiv.appendChild(div);
+
+        }
+    }
+    console.log(dataArr);
+    parserJSON(dataArr);
+
+
+
+    </script>
+
+</body></html>
