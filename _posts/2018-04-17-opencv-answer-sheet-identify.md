@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "基于 OpenCV 的类似猿题库 iOS 客户端答题卡识别算法"
+title: "基于 OpenCV 的 iOS 客户端答题卡识别算法"
 date: 2018-04-17 21:13:00.000000000 +08:00
 tags: OpenCV
 ---
