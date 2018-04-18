@@ -61,7 +61,7 @@ cv::resize(inputMat, outputMat, cv::Size(inputMat.rows / 1.5, inputMat.cols/ 1.5
 
 ```
 
-<br/><br/>
+<br/>
 
 - 将彩色图像转为灰度图像
 
@@ -76,7 +76,7 @@ cv::cvtColor(inputMat, outputMat, CV_BGR2GRAY);
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_grayMat.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 图像降噪、二值化
 
@@ -95,7 +95,7 @@ cv::threshold(inputMat, outputMat, 100, 255, cv::THRESH_BINARY_INV);
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_binary.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 直线检测
 
@@ -123,7 +123,7 @@ for (size_t i = 0; i < lines.size(); i++) {
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_line.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 直线过滤
 
@@ -180,7 +180,7 @@ for (size_t i = 0; i < lines.size(); i++) {
 ```
 
 
-<br/><br/>
+<br/>
 
 - 计算四个顶点
 
@@ -232,7 +232,7 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_crossPoint.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 图像纠偏
 
@@ -262,7 +262,7 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_transform.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 设置选项区域 ROI（感兴趣区域）
 
@@ -288,7 +288,7 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIRect.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 根据选项区域，设置每道题的 ROI
 
@@ -315,7 +315,7 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIItemRect.png" width="40%"/>
 
 
-<br/><br/>
+<br/>
 
 - 二值化纠偏后的灰度图像，便于接下来的色值统计
 
@@ -328,7 +328,7 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 ```
 
 
-<br/><br/>
+<br/>
 
 - 分割选项，统计色值，计算有效作答
 
