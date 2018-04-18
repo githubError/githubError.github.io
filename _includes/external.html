@@ -4,8 +4,9 @@
 
 <script type="text/javascript" src="/js/main.js"></script>
 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
 {% if site.google_analytics %}
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
   <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,8 +14,11 @@
   gtag('js', new Date());
 
   gtag('config', '{{ site.google_analytics }}');
+
   </script>
 {% endif %}
+
+
 
 <!-- Baidu analytics -->
 {% if site.baidu_analytics %}
@@ -26,6 +30,5 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-
 </script>
 {% endif %}
