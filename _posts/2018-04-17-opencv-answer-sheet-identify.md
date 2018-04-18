@@ -61,6 +61,7 @@ cv::resize(inputMat, outputMat, cv::Size(inputMat.rows / 1.5, inputMat.cols/ 1.5
 
 ```
 
+<br/><br/>
 
 - 将彩色图像转为灰度图像
 
@@ -73,6 +74,9 @@ cv::cvtColor(inputMat, outputMat, CV_BGR2GRAY);
 处理结果：
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_grayMat.png" width="40%"/>
+
+
+<br/><br/>
 
 - 图像降噪、二值化
 
@@ -89,6 +93,9 @@ cv::threshold(inputMat, outputMat, 100, 255, cv::THRESH_BINARY_INV);
 处理结果：
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_binary.png" width="40%"/>
+
+
+<br/><br/>
 
 - 直线检测
 
@@ -114,6 +121,9 @@ for (size_t i = 0; i < lines.size(); i++) {
 处理结果：
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_line.png" width="40%"/>
+
+
+<br/><br/>
 
 - 直线过滤
 
@@ -169,6 +179,9 @@ for (size_t i = 0; i < lines.size(); i++) {
 
 ```
 
+
+<br/><br/>
+
 - 计算四个顶点
 
 上面通过简单的过滤算法，得到了不同方位的四条直线，并存放在 cv::Vec4i filtLines[4] 的容器内，容器内的线条和对应方位为：[上，左，下，右]。
@@ -218,6 +231,9 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_crossPoint.png" width="40%"/>
 
+
+<br/><br/>
+
 - 图像纠偏
 
 根据上述的四个顶点，构造透视变换的变换矩阵，利用 OpenCV Lib 的透视变换，对灰度图像，进行图像纠偏处理。
@@ -246,6 +262,8 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_transform.png" width="40%"/>
 
 
+<br/><br/>
+
 - 设置选项区域 ROI（感兴趣区域）
 
 观察纠偏后的灰度图像的规律，可以按照每5道题设置一个 ROI，并标定出相应的位置，这里需要特别注意的是，上下左右以及 ROI 间隔的设置需要根据整个纠偏后的图像大小的比例来确定，为了简单起见，这里直接写成固定值。算法如下：
@@ -268,6 +286,9 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 将划分的 ROI 使用方框标记，效果如下：
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIRect.png" width="40%"/>
+
+
+<br/><br/>
 
 - 根据选项区域，设置每道题的 ROI
 
@@ -294,6 +315,8 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIItemRect.png" width="40%"/>
 
 
+<br/><br/>
+
 - 二值化纠偏后的灰度图像，便于接下来的色值统计
 
 这里对纠偏后的灰度图进行二值化操作，其实不是必须的，为了性能提升减少耗时才做，在进行上面的图像纠偏时可以直接对第一次二值化的图像进行纠偏操作。但是在实现的过程中因为要控制每一步的显示效果，这里多做了一次处理，可以忽略。
@@ -303,6 +326,9 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
     cv::Mat binaryMat;
     cv::threshold(grayMat, binaryMat, 100, 255, cv::THRESH_BINARY);
 ```
+
+
+<br/><br/>
 
 - 分割选项，统计色值，计算有效作答
 
@@ -361,6 +387,8 @@ filtPoints.push_back(CrossPointWithLine(filtLines[0], filtLines[1]));
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_result.png" width="40%"/>
 
+
+<br/><br/>
 
 ### 总结
 
