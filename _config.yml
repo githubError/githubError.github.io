@@ -41,10 +41,11 @@ social:
     twitter: 0x00ffee
     mail: 0x00ffee@gmail.com
 
+
+# Baidu Analytics
+baidu_analytics: 68ee30beb4d6d80c7b20fff177545e7d    #from //hm.baidu.com/hm.js?***
+
+
 # Google Analytics
+google_analytics: UA-117740493-1
 
-baidu_analytics: ff67184f5179ba448c739cf2fb08d2ee    #from //hm.baidu.com/hm.js?***
-
-# ga:
-#     id: UA-25719337-1
-#     host: onevcat.com
