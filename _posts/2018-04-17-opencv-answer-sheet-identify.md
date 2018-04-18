@@ -18,11 +18,11 @@ tags: OpenCV
 
 本文的实现目的是：利用 OpenCV Lib 识别一张特定的答题卡照片，并且识别出学生填涂的选项。
 
-##### 原图如下：
+#### 原图如下：
 
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_origin.jpg" width = "40%" />
 
-##### 实现结果如下：（红框内为识别结果）
+#### 实现结果如下：（红框内为识别结果）
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_result.png" width = "40%" />
 
 
@@ -37,7 +37,8 @@ tags: OpenCV
 因这些繁琐的配置问题不是本文写作重点，而且网上不乏一些详细说明，推荐参考 [在MacOS和iOS系统中使用OpenCV](https://blog.devtang.com/2012/10/27/use-opencv-in-ios/) 一文，这里就不再赘述。
 
 ### 技术方案
-需要说明的是，在学习 OpenCV 的基础知识时，无意间发现唐巧大神几年前写的 [猿题库iOS客户端的技术细节（二）：答题卡扫描算法](http://blog.devtang.com/2013/10/19/the-tech-detail-of-ape-client-2/) 一文。文中提到，在文章发布时相关的识别算法还在进行专利申请，并且在专利申请结束会披露算法细节，但是遗憾的是相关的算法细节并没有公开。不过万幸的是，唐巧大神提供了一套不错的解决方案，我本人的算法就是按照这个思路展开的，方案如下：
+需要说明的是，在学习 OpenCV 的基础知识时，无意间发现唐巧大神几年前写的 [猿题库iOS客户端的技术细节（二）：答题卡扫描算法](http://blog.devtang.com/2013/10/19/the-tech-detail-of-ape-client-2/) 一文。文中提到，在文章发布时相关的识别算法还在进行专利申请，并且在专利申请结束会披露算法细节，但是遗憾的是相关的算法细节并没有公开。
+不过万幸的是，唐巧大神提供了一套不错的解决方案，我本人的算法就是按照这个思路展开的，方案如下：
 
 1. 图像预处理，压缩图像；
 2. 将彩色图像转为灰度图像；
