@@ -20,10 +20,10 @@ tags: OpenCV
 
 ##### 原图如下：
 
-<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_origin.jpg" 30%>
+<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_origin.jpg" width = 40%>
 
 ##### 实现结果如下：（红框内为识别结果）
-<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_result.png" 30%>
+<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_result.png" width = 40%>
 
 
 ### 准备
