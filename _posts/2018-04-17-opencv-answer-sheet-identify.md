@@ -13,6 +13,19 @@ tags: OpenCV
 
 这次的 OpenCV 的学习，一方面是为了弥补之前的技术空白，另一方面也是为了自己能在图像处理上有所了解，能站在巨人的肩膀上提升一下自身技术的维度。
 
+### 目的及结果
+本篇的写作目的是记录学习 OpenCV Lib 以及运用到答题卡识别的相关过程，并且也是对新学习知识点的梳理和重新组织。
+
+本文的实现目的是：利用 OpenCV Lib 识别一张特定的答题卡照片，并且识别出学生填涂的选项。
+
+##### 原图如下：
+
+<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_origin.jpg" 30%>
+
+##### 实现结果如下：（红框内为识别结果）
+<img src="/Users/ios02/cuipengfei.cn/githubError.github.io/assets/post_images/2018/opencv_result.png" 30%>
+
+
 ### 准备
 考虑到 OpenCV 是基于 C/C++ 可跨平台的通用 Lib，为了降低学习成本，便将整个学习和实验集成到 iOS 的开发环境里了。前期要做如下几方面的准备工作：
 
