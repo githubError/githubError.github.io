@@ -25,6 +25,8 @@ tags: OpenCV
 ##### 实现结果如下：（红框内为识别结果）
 <img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_result.png" width = 40% />
 
+<img src="http://www.cuipengfei.cn/assets/post_images/2017/attention.png" width = "33%" />
+
 
 ### 准备
 考虑到 OpenCV 是基于 C/C++ 可跨平台的通用 Lib，为了降低学习成本，便将整个学习和实验集成到 iOS 的开发环境里了。前期要做如下几方面的准备工作：
