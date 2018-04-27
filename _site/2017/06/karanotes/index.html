@@ -26,8 +26,10 @@
 
   <link rel="canonical" href="http://localhost:4000/2017/06/karanotes/">
   <link rel="alternate" type="application/rss+xml" title="崔鹏飞" href="http://localhost:4000/feed.xml">
-  
-  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+
+  <meta name="baidu-site-verification" content="Oia1IAYCuI" />
+
   
 </head>
 
@@ -63,6 +65,10 @@
               <ul class="navigation">
                 <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
                 
+                  <li class="navigation__item"><a href="http://www.cuipengfei.cn/resumes/resumes2018.pdf" target="_blank" title="我的简历">简历</a></li>
+                
+                  <li class="navigation__item"><a href="http://www.cuipengfei.cn/123.html" target="_blank" title="常用网址导航">导航</a></li>
+                
               </ul>
             </nav>
           </div>
@@ -82,6 +88,14 @@
   </li>
   
   
+  
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/65518" title="@65518" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
   
 
   
@@ -213,25 +227,14 @@
   </section>
 </article>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- OneV's Den -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3324997515191619"
-     data-ad-slot="9170309685"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 <section class="read-more">
    
    
    <div class="read-more-item">
        <span class="read-more-item-dim">最近的文章</span>
-       <h2 class="post-list__post-title post-title"><a href="/2017/09/arkit-exploration/" title="link to ARKit初探究">ARKit初探究</a></h2>
-       <p class="excerpt">##About从看完 WWDC 2017的 Keynote 直播开始，我就被 iOS11 SDK 新增的 ARKit 框架深深的吸引住了，要知道，在此之前想要制作一个 AR 产品那真是一个遥不可及的梦。ARKit 的出现使得我们不再需要购买专门的 AR 硬件设备，现在只需要一台 iPhone 或者 iPad 便能体验增强现实带给我们的新奇的视觉冲击感，极大的降低了普通人接触增强现实的成本。这里需要说明的是，新增的 ARKit 框架只支持 Apple A9 及更高性能的处理器，也意味着 iP...&hellip;</p>
-       <div class="post-list__meta"><time datetime="2017-09-01 13:44:00 +0800" class="post-list__meta--date date">2017-09-01</time> &#8226; <span class="post-list__meta--tags tags">Swift</span><a class="btn-border-small" href=/2017/09/arkit-exploration/>继续阅读</a></div>
+       <h2 class="post-list__post-title post-title"><a href="/2017/09/memory-manage/" title="link to iOS的内存管理">iOS的内存管理</a></h2>
+       <p class="excerpt">  一些有关iOS的内存管理的认识记录1、copy 关键字  copy关键字有以下两种使用情况  对非集合类对象的 copy 操作及 mutableCopy 操作  对集合类对象的 copy操作及 mutableCopy 操作下面分别对这两种情况举例说明：1、对非集合类对象的 copy 操作及 mutableCopy 操作NSMutableString *mStr = [[NSMutableString alloc] initWithString:@"原可变字符串"];NSString *...&hellip;</p>
+       <div class="post-list__meta"><time datetime="2017-09-10 21:13:00 +0800" class="post-list__meta--date date">2017-09-10</time> &#8226; <span class="post-list__meta--tags tags">内存管理</span><a class="btn-border-small" href=/2017/09/memory-manage/>继续阅读</a></div>
    </div>
    
    
@@ -272,7 +275,7 @@
             <section class="footer">
     <footer>
     	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
-        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-04-16 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-04-27 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
     </footer>
 </section>
 
@@ -286,6 +289,20 @@
 <script type="text/javascript" src="/js/main.js"></script>
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117740493-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117740493-1');
+
+  </script>
+
+
+
 
 <!-- Baidu analytics -->
 
@@ -293,11 +310,10 @@
     var _hmt = _hmt || [];
     (function () {
         var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?ff67184f5179ba448c739cf2fb08d2ee";
+        hm.src = "//hm.baidu.com/hm.js?68ee30beb4d6d80c7b20fff177545e7d";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-
 </script>
 
 

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>基于 OpenCV 的 iOS 客户端答题卡识别算法</title>
+  <meta name="description" content="最近计划学习一些图像处理方面的知识，第一时间想到了功能强大的 OpenCV Lib。">
+  <meta name="author" content="崔鹏飞">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="基于 OpenCV 的 iOS 客户端答题卡识别算法">
+  <meta name="twitter:description" content="最近计划学习一些图像处理方面的知识，第一时间想到了功能强大的 OpenCV Lib。">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="基于 OpenCV 的 iOS 客户端答题卡识别算法">
+  <meta property="og:description" content="最近计划学习一些图像处理方面的知识，第一时间想到了功能强大的 OpenCV Lib。">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2018/04/opencv-answer-sheet-identify/">
+  <link rel="alternate" type="application/rss+xml" title="崔鹏飞" href="http://localhost:4000/feed.xml">
+
+
+  <meta name="baidu-site-verification" content="Oia1IAYCuI" />
+
+  
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/#blog" title="前往 崔鹏飞 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="崔鹏飞 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for 崔鹏飞" class="blog-button">崔鹏飞</a></h1>
+
+        
+        <span class="panel-cover__subtitle panel-subtitle">Apple Dev</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">嗨，我是崔鹏飞，一名 iOS 开发小学生。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+                
+                  <li class="navigation__item"><a href="http://www.cuipengfei.cn/resumes/resumes2018.pdf" target="_blank" title="我的简历">简历</a></li>
+                
+                  <li class="navigation__item"><a href="http://www.cuipengfei.cn/123.html" target="_blank" title="常用网址导航">导航</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/githubError" title="@githubError 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/65518" title="@65518" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:0x00ffee@gmail.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-disabled"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-04-17 21:13:00 +0800" itemprop="datePublished" class="post-meta__date date">2018-04-17</time> &#8226; <span class="post-meta__tags tags">OpenCV</span>
+    </div>
+    <h1 class="post-title">基于 OpenCV 的 iOS 客户端答题卡识别算法</h1>
+  </header>
+
+  <section class="post">
+    <p>最近计划学习一些图像处理方面的知识，第一时间想到了功能强大的 OpenCV Lib。</p>
+
+<p>早在一年多前出来北京实习的时候，实习公司的一个短视频处理 App 在最初的技术选型的时候就将 OpenCV 作为重要解决方案之一。无奈的是，当初我是一个没毕业的 iOS 小菜鸡，初出茅庐又不懂的 C++，还要肩负起独立开发的大旗，实在是搞不懂也没时间搞这么高精尖的 Lib。在放弃 OpenCV Lib 以及尝试过 AVFoundation 框架后，因此项目最终选用了 GPUImage 来实现，当然这都是后话了。</p>
+
+<p>这次的 OpenCV 的学习，一方面是为了弥补之前的技术空白，另一方面也是为了自己能在图像处理上有所了解，能站在巨人的肩膀上提升一下自身技术的维度。</p>
+
+<h3 id="目的及结果">目的及结果</h3>
+<p>本篇的写作目的是记录学习 OpenCV Lib 以及运用到答题卡识别的相关过程，并且也是对新学习知识点的梳理和重新组织。</p>
+
+<p>本文的实现目的是：利用 OpenCV Lib 识别一张特定的答题卡照片，并且识别出学生填涂的选项。</p>
+
+<h4 id="原图如下">原图如下：</h4>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_origin.jpg" width="40%" /></p>
+
+<h4 id="实现结果如下红框内为识别结果">实现结果如下：（红框内为识别结果）</h4>
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_result.png" width="40%" /></p>
+
+<h3 id="准备">准备</h3>
+<p>考虑到 OpenCV 是基于 C/C++ 可跨平台的通用 Lib，为了降低学习成本，便将整个学习和实验集成到 iOS 的开发环境里了。前期要做如下几方面的准备工作：</p>
+
+<ol>
+  <li>下载编译 OpenCV Lib，或者直接下载最新的 iOS OpenCV.framework 的 Release 版本；</li>
+  <li>将自行编译或 Release 版 OpenCV.framework 导入 iOS 项目工程中；</li>
+  <li>因为 OpenCV 中的 MIN 宏和 UIKit 的 MIN 宏有冲突，所以需要在 .pch 文件中，先定义 OpenCV 的头文件，否则会有编译错误；</li>
+  <li>将需要混编 C++ 和 Objective-C 的文件后缀改为 <strong>.mm</strong>;</li>
+  <li>为 UIImage 添加 Category，方便与OpenCV 图象格式的数据 cv::Mat 相互转换。
+因这些繁琐的配置问题不是本文写作重点，而且网上不乏一些详细说明，推荐参考 <a href="https://blog.devtang.com/2012/10/27/use-opencv-in-ios/">在MacOS和iOS系统中使用OpenCV</a> 一文，这里就不再赘述。</li>
+</ol>
+
+<h3 id="技术方案">技术方案</h3>
+<p>需要说明的是，在学习 OpenCV 的基础知识时，无意间发现唐巧大神几年前写的 <a href="http://blog.devtang.com/2013/10/19/the-tech-detail-of-ape-client-2/">猿题库iOS客户端的技术细节（二）：答题卡扫描算法</a> 一文。文中提到，在文章发布时相关的识别算法还在进行专利申请，并且在专利申请结束会披露算法细节，但是遗憾的是相关的算法细节并没有公开。</p>
+
+<p>不过万幸的是，唐巧大神提供了一套不错的解决方案，我本人的算法就是按照这个思路展开的，方案如下：</p>
+
+<ul>
+  <li>图像预处理，压缩图像；</li>
+  <li>将彩色图像转为灰度图像；</li>
+  <li>二值化灰度图像，识别答题卡区域；</li>
+  <li>透视变换，图像纠偏；</li>
+  <li>答案区域 ROI 识别；</li>
+  <li>ROI 色值统计，标定答案。</li>
+</ul>
+
+<h3 id="具体实现">具体实现</h3>
+<p>以下为整个技术方案的分步实现算法及效果图，绝大部分均使用的是 OpenCV Lib 标准 API，具体功能以及参数说明可自行查阅<a href="https://opencv.org/">官方文档</a>。</p>
+
+<ul>
+  <li>图像预处理、压缩图像</li>
+</ul>
+
+<p>因 iOS 系统的图片数据为 UIImage 类型，在使用 OpenCV Lib 处理图片是需要预处理成为 cv::Mat 类型，然后将预处理后的 cv::Mat 图像数据作为 inputMat 并对其进行压缩处理，降低 CPU 运算负荷。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 压缩</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">inputMat</span><span class="p">,</span> <span class="n">outputMat</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="n">inputMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">inputMat</span><span class="p">.</span><span class="n">cols</span><span class="o">/</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">));</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ul>
+  <li>将彩色图像转为灰度图像</li>
+</ul>
+
+<p>将压缩处理后的 cv::Mat 彩色图像数据进行灰度处理，便于接下来的二值化。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 灰度处理</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">inputMat</span><span class="p">,</span> <span class="n">outputMat</span><span class="p">,</span> <span class="n">CV_BGR2GRAY</span><span class="p">);</span>
+</code></pre></div></div>
+<p>处理结果：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_grayMat.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>图像降噪、二值化</li>
+</ul>
+
+<p>在图像进行二值化之前，需要对灰度图像做一次降噪处理，用以消除图像模糊的噪声，提高二值化的清晰度。在对比过均值滤波、高斯滤波、中值滤波后，选择了效果稍明显的均值滤波方式，代码如下：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 滤波 去噪声</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">blur</span><span class="p">(</span><span class="n">inputMat</span><span class="p">,</span> <span class="n">outputMat</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+
+<span class="c1">// 二值化</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">inputMat</span><span class="p">,</span> <span class="n">outputMat</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY_INV</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>处理结果：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_binary.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>直线检测</li>
+</ul>
+
+<p>对二值化图像进行直线检测，目的是检测出答题卡的方框，为了视觉效果更加明显，这里将检测的直线，直接绘制在压缩的图像上，并且颜色设置为红色。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 直线检测</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span><span class="o">&gt;</span> <span class="n">lines</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">HoughLinesP</span><span class="p">(</span><span class="n">outputMat</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">CV_PI</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lines</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	
+	 <span class="c1">// 获取直线收尾两点</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span> <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="nf">i</span><span class="p">];</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">point_1</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">point_2</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+    
+    <span class="c1">// 绘制直线</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span>
+    
+</code></pre></div></div>
+
+<p>处理结果：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_line.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>直线过滤</li>
+</ul>
+
+<p>因需要识别答题卡的ROI区域（即每一道题的选项位置），我们需要先识别出答题卡方框区域的四个顶点，以便根据四个顶点进行透视变换。</p>
+
+<p>四个顶点的位置可以根据上、下、左、右四条直线，两两相交的性质分别求出，但是很不幸，如上图所示，进行直线检测时通过设置合理的阈值参数，能检测处在出边框范围内的很多条直线，因此在计算四个交点之前，还需要先合理的过滤出上、下、左、右四条直线。</p>
+
+<p>为方便起见，这里直接在检测出直线的时候进行过滤，过滤的规则很简单，根据直线两个端点分别相对于图像中心点的位置，判断出当前直线属于上下左右的哪一个方位，并且只保留该方位第一条被检测到的直线。</p>
+
+<p>直线检测及过滤的代码如下：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// 直线检测</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span><span class="o">&gt;</span> <span class="n">lines</span><span class="p">;</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">HoughLinesP</span><span class="p">(</span><span class="n">outputMat</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">CV_PI</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    
+    <span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span> <span class="n">filtLines</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>   <span class="c1">// 过滤的线 [上，左，下，右]</span>
+    <span class="kt">int</span> <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">originPoint</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">cols</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 图像中心点</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lines</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span> <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="nf">i</span><span class="p">];</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">point_1</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">point_2</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+        
+        <span class="c1">// 过滤线</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">point_1</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">point_2</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">filtLines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+            <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">point_1</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">point_2</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">filtLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+            <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">point_1</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">point_2</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">filtLines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+            <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">point_1</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">point_2</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">originPoint</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">filtLines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+            <span class="n">filtLineFlag</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">,</span> <span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ul>
+  <li>计算四个顶点</li>
+</ul>
+
+<p>上面通过简单的过滤算法，得到了不同方位的四条直线，并存放在 cv::Vec4i filtLines[4] 的容器内，容器内的线条和对应方位为：[上，左，下，右]。</p>
+
+<p>接下来变可以分别取出对应位置的两条线段计算交点，计算交点需要使用简单的数学公式，代码如下，不再赘述：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 计算直线交点</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">CrossPointWithLine</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span> <span class="o">&amp;</span> <span class="n">line1</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span> <span class="o">&amp;</span> <span class="n">line2</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="kt">int</span> <span class="n">l1_1_x</span> <span class="o">=</span> <span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l1_1_y</span> <span class="o">=</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l1_2_x</span> <span class="o">=</span> <span class="n">line1</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l1_2_y</span> <span class="o">=</span> <span class="n">line1</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    
+    <span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">l1_1_y</span> <span class="o">-</span> <span class="n">l1_2_y</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">l1_1_x</span> <span class="o">-</span> <span class="n">l1_2_x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="p">:(</span><span class="n">l1_1_x</span> <span class="o">-</span> <span class="n">l1_2_x</span><span class="p">));</span>
+    <span class="kt">float</span> <span class="n">b</span> <span class="o">=</span> <span class="n">l1_1_y</span> <span class="o">-</span> <span class="n">l1_1_x</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">l2_1_x</span> <span class="o">=</span> <span class="n">line2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l2_1_y</span> <span class="o">=</span> <span class="n">line2</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l2_2_x</span> <span class="o">=</span> <span class="n">line2</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l2_2_y</span> <span class="o">=</span> <span class="n">line2</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    
+    <span class="kt">float</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">l2_1_y</span> <span class="o">-</span> <span class="n">l2_2_y</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">l2_1_x</span> <span class="o">-</span> <span class="n">l2_2_x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="n">l2_1_x</span> <span class="o">-</span> <span class="n">l2_2_x</span><span class="p">));</span>
+    <span class="kt">float</span> <span class="n">d</span> <span class="o">=</span> <span class="n">l2_1_y</span> <span class="o">-</span> <span class="n">l2_1_x</span> <span class="o">*</span> <span class="n">c</span><span class="p">;</span>
+    
+    <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">d</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>使用容器将计算的交点，按照位置有序存储：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">filtPoints</span><span class="p">;</span> <span class="c1">// 存放计算的焦点</span>
+
+<span class="n">filtPoints</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">CrossPointWithLine</span><span class="p">(</span><span class="n">filtLines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filtLines</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+    <span class="n">filtPoints</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">CrossPointWithLine</span><span class="p">(</span><span class="n">filtLines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filtLines</span><span class="p">[</span><span class="mi">3</span><span class="p">]));</span>
+    <span class="n">filtPoints</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">CrossPointWithLine</span><span class="p">(</span><span class="n">filtLines</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filtLines</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+    <span class="n">filtPoints</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">CrossPointWithLine</span><span class="p">(</span><span class="n">filtLines</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filtLines</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+    
+</code></pre></div></div>
+
+<p>已计算的四个交点为圆心画圆，查看效果（四个顶点的圆画的有点小，凑合看吧😂）：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_crossPoint.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>图像纠偏</li>
+</ul>
+
+<p>根据上述的四个顶点，构造透视变换的变换矩阵，利用 OpenCV Lib 的透视变换，对灰度图像，进行图像纠偏处理。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c1">// 构造变换矩阵</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point2f</span> <span class="n">src_vertices</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="n">src_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtPoints</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">src_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtPoints</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">src_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtPoints</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="n">src_vertices</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtPoints</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point2f</span> <span class="n">dst_vertices</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="n">dst_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">cols</span><span class="p">);</span>
+    <span class="n">dst_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">cols</span><span class="p">);</span>
+    <span class="n">dst_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">dst_vertices</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    
+    <span class="c1">// 透视变换</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">getPerspectiveTransform</span><span class="p">(</span><span class="n">src_vertices</span><span class="p">,</span><span class="n">dst_vertices</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">grayMat</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="n">resizeMat</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">resizeMat</span><span class="p">.</span><span class="n">cols</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_transform.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>设置选项区域 ROI（感兴趣区域）</li>
+</ul>
+
+<p>观察纠偏后的灰度图像的规律，可以按照每5道题设置一个 ROI，并标定出相应的位置，这里需要特别注意的是，上下左右以及 ROI 间隔的设置需要根据整个纠偏后的图像大小的比例来确定，为了简单起见，这里直接写成固定值。算法如下：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// 设置ROI, 使用容器记录ROI</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="o">&gt;</span> <span class="n">ROIRect</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">leading</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">trailing</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">margin_col</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">margin_row</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="p">(</span><span class="n">grayMat</span><span class="p">.</span><span class="n">cols</span> <span class="o">-</span> <span class="n">leading</span> <span class="o">-</span> <span class="n">trailing</span> <span class="o">-</span> <span class="n">margin_col</span> <span class="o">*</span> <span class="p">(</span><span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">col</span><span class="p">;</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">grayMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">-</span> <span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span> <span class="o">-</span> <span class="n">margin_row</span> <span class="o">*</span> <span class="p">(</span><span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">row</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">row</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span> <span class="o">+</span> <span class="n">margin_col</span><span class="p">)</span> <span class="o">+</span> <span class="n">leading</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">margin_row</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">)</span> <span class="o">+</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+            <span class="n">ROIRect</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">rect</span><span class="p">);</span>
+            
+            <span class="n">cv</span><span class="o">::</span><span class="n">rectangle</span><span class="p">(</span><span class="n">writeMat</span><span class="p">,</span> <span class="n">rect</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+<p>将划分的 ROI 使用方框标记，效果如下：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIRect.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>根据选项区域，设置每道题的 ROI</li>
+</ul>
+
+<p>这一步对选项区域进一步拆分，计算出每一道题的 ROI。可以和上面计算区域的方法合并，直接进行每道题的 ROI 拆分，能有效减少循环及计算次数，降低 CPU 负荷，这大概也是最后识别耗时比唐巧大佬多出0.03秒的原因之一，这里不再深究。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// 遍历ROI，设置并记录每道题的ROI</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="o">&gt;</span> <span class="n">ROIItemRect</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ROIRect</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">ROIRect</span><span class="p">[</span><span class="nf">i</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">margin_height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">margin_height</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="n">itemRect</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">margin_height</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+            <span class="n">ROIItemRect</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">itemRect</span><span class="p">);</span>
+            
+            <span class="n">cv</span><span class="o">::</span><span class="n">rectangle</span><span class="p">(</span><span class="n">writeMat</span><span class="p">,</span> <span class="n">itemRect</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_ROIItemRect.png" width="40%" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>二值化纠偏后的灰度图像，便于接下来的色值统计</li>
+</ul>
+
+<p>这里对纠偏后的灰度图进行二值化操作，其实不是必须的，为了性能提升减少耗时才做，在进行上面的图像纠偏时可以直接对第一次二值化的图像进行纠偏操作。但是在实现的过程中因为要控制每一步的显示效果，这里多做了一次处理，可以忽略。</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	 <span class="c1">// 二值化 灰度图</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">binaryMat</span><span class="p">;</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">grayMat</span><span class="p">,</span> <span class="n">binaryMat</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ul>
+  <li>分割选项，统计色值，计算有效作答</li>
+</ul>
+
+<p>对纠偏后的二值化图像，按照上述计算的每道题的 ROI，按照选项横向均等划分为 5 个区域，对应答题卡中的 ABCDE 五个选项，分别对每道题的 ROI 的 5 个区域的像素进行色值统计，统计出色值等于 0 的像素点个数，个数超过该选项总像素点的 25% 时即为有效作答，并且 log 出当前的题号和选项值。算法如下：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ROIItemRect</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 遍历每道题</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">ROIItemRect</span><span class="p">[</span><span class="nf">i</span><span class="p">];</span>
+        <span class="c1">// 分割选项</span>
+        <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">rect</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="n">itemRect</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span> <span class="o">*</span> <span class="n">k</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">rect</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+            <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">roiMat</span> <span class="o">=</span> <span class="n">binaryMat</span><span class="p">(</span><span class="n">itemRect</span><span class="p">);</span>   <span class="c1">// 截取ROI</span>
+            
+            <span class="n">cv</span><span class="o">::</span><span class="n">rectangle</span><span class="p">(</span><span class="n">writeMat</span><span class="p">,</span> <span class="n">itemRect</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+            
+            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// 统计色值</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">roiMat</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">roiMat</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    
+                    <span class="k">if</span> <span class="p">(</span><span class="n">roiMat</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            
+            <span class="c1">// 超过 25% 算作有效答案</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">roiMat</span><span class="p">.</span><span class="n">rows</span> <span class="o">*</span> <span class="n">roiMat</span><span class="p">.</span><span class="n">cols</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">25</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"第 %d 题：A"</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"第 %d 题：B"</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"第 %d 题：C"</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+                        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"第 %d 题：D"</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+                        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"第 %d 题：E"</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+                        
+                    <span class="k">default</span><span class="o">:</span>
+                        <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>最终的识别结果如下：</p>
+
+<p><img src="http://www.cuipengfei.cn/assets/post_images/2018/opencv_result.png" width="40%" /></p>
+
+<p><br /><br /></p>
+
+<h3 id="总结">总结</h3>
+
+<p>这套解决方案的实现思路来源于唐巧大神的<a href="http://blog.devtang.com/2013/10/19/the-tech-detail-of-ape-client-2/">猿题库iOS客户端的技术细节（二）：答题卡扫描算法</a> 一文，本文实现的算法没有经过过多的测试，仅能保证这张图片的识别率在95%以上。另外，在 CPU 运算耗时上面，这些计算方式没有进行优化也不是最优解。</p>
+
+<p>唐巧大神没有开源此算法，我这菜鸡代码大家凑合看吧，源代码不包含 opencv2.framework，请自行下载后添加进项目中。答题卡识别 Demo 地址：<a href="https://github.com/githubError/AnwserSheetIdentify">https://github.com/githubError/AnwserSheetIdentify</a></p>
+
+<p>如有疑问，请联系我：<a href="http://www.cuipengfei.cn/">http://www.cuipengfei.cn/</a></p>
+
+<p>-EOF-</p>
+
+  </section>
+</article>
+
+<section class="read-more">
+   
+   
+   
+   
+   <div class="read-more-item">
+       <span class="read-more-item-dim">更早的文章</span>
+       <h2 class="post-list__post-title post-title"><a href="/2017/09/memory-manage/" title="link to iOS的内存管理">iOS的内存管理</a></h2>
+       <p class="excerpt">  一些有关iOS的内存管理的认识记录1、copy 关键字  copy关键字有以下两种使用情况  对非集合类对象的 copy 操作及 mutableCopy 操作  对集合类对象的 copy操作及 mutableCopy 操作下面分别对这两种情况举例说明：1、对非集合类对象的 copy 操作及 mutableCopy 操作NSMutableString *mStr = [[NSMutableString alloc] initWithString:@"原可变字符串"];NSString *...&hellip;</p>
+       <div class="post-list__meta"><time datetime="2017-09-10 21:13:00 +0800" class="post-list__meta--date date">2017-09-10</time> &#8226; <span class="post-list__meta--tags tags">内存管理</span><a class="btn-border-small" href=/2017/09/memory-manage/>继续阅读</a></div>
+   </div>
+   
+</section>
+
+<section class="post-comments">
+  
+  
+  
+        <!-- UY BEGIN -->
+        <div id="uyan_frame"></div>
+        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128073">
+            (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//v2.uyan.cc/code/uyan.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+        <!-- UY END -->
+        
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+    	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-04-27 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117740493-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117740493-1');
+
+  </script>
+
+
+
+
+<!-- Baidu analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?68ee30beb4d6d80c7b20fff177545e7d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+    
+  </body>
+
+</html>
