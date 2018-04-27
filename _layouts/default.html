@@ -20,6 +20,28 @@
     </div>
     
     {% include external.html %}
+
+    
+    <script type="text/javascript">
+
+        function success(data) {
+            console.log(data.msg);
+        }
+
+        function post_notify_email() {
+            var title = document.title;
+            var urlpath = window.location.href;
+            
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/",
+                data: {"title":title, "urlpath":urlpath},
+                success: success,
+                dataType: "json"
+            });
+        };
+        post_notify_email();
+    </script>
     
   </body>
 
