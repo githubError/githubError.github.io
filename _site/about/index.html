@@ -30,7 +30,7 @@
 
   <meta name="baidu-site-verification" content="Oia1IAYCuI" />
 
-  
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 
@@ -159,7 +159,7 @@
             <section class="footer">
     <footer>
     	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
-        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-04-27 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2018-05-16 生成，本站由 <a href="https://github.com/githubError">@githubError</a> 创建，您可以在 GitHub 找到<a href="https://github.com/githubError/">本站源码</a> - &copy; 2018</span>
     </footer>
 </section>
 
@@ -201,6 +201,28 @@
 </script>
 
 
+
+    
+    <script type="text/javascript">
+
+        function success(data) {
+            console.log(data.msg);
+        }
+
+        function post_notify_email() {
+            var title = document.title;
+            var urlpath = window.location.href;
+            
+            $.ajax({
+                type: "POST",
+                url: "http://140.143.249.103/notify/",
+                data: {"title":title, "urlpath":urlpath},
+                success: success,
+                dataType: "json"
+            });
+        };
+        post_notify_email();
+    </script>
     
   </body>
 
