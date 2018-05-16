@@ -20,7 +20,9 @@ blog_button:
     description: 访问博客
 
 nav:
-    - {title: 简历, description: 我的简历, url: 'http://www.cuipengfei.cn/resumes/resumes2018.pdf'}
+    # http://resumes.cuipengfei.cn/
+    # - {title: 简历, description: 我的简历, url: 'http://www.cuipengfei.cn/resumes/resumes2018.pdf'}
+    - {title: 简历, description: 我的简历, url: 'http://resumes.cuipengfei.cn/'}
     - {title: 导航, description: 常用网址导航, url: 'http://www.cuipengfei.cn/123.html'}
     #- {title: 订阅, description: 邮件订阅本站, url: '//store.objccn.io/subscribe'}
 
