@@ -8,6 +8,8 @@ tags: Runloop
 ### 前言
 前段时间工作不忙，深入学习了一些 Runloop 相关的知识。在学习和研究的过程中，也对网上相互抄来抄去的知识点有了一些透彻的认识，并且编写了一套简陋的代码，命名为 **CPFRunloopTaskManager**，用于解决一些必须在主线程处理的任务又要防止页面卡顿的问题。现开篇记录一下。
 
+项目地址：[https://github.com/githubError/MessyRepository/tree/master/CPFRunloopDemo](CPFRunloopTaskManager)
+
 ### 有关Runloop的认识
 1. Runloop 与 线程 之间存在一一对应的关系，这种对应关系在 Runloop 的创建之初便已经建立；
 2. Runloop 的包含多个Model，每个Model中又包含多个输入源 Timer、Source、Observer等
@@ -80,6 +82,7 @@ NSLog(@"++-----++ %@",message);
 return NULL;
 }
 ```
+
 
 
 ### RunloopTaskManager
